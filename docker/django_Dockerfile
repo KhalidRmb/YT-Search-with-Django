@@ -1,0 +1,15 @@
+FROM python:3.6.5
+
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir /code
+WORKDIR /code
+
+ADD . /code
+
+RUN pip install -U pip
+RUN python -m pip install --upgrade pip setuptools wheel
+RUN pip3 install --upgrade oauth2client 
+RUN pip install -r requirements.txt
+
+CMD ["/code/docker/django_container_start.sh"]

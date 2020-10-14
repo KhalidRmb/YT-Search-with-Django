@@ -1,0 +1,11 @@
+Django
+django-silk
+django-extensions
+django-debug-toolbar
+django-spaghetti-and-meatballs
+djangorestframework
+celery
+redis
+responses
+google-api-python-client
+psycopg2

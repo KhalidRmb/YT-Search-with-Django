@@ -1,0 +1,47 @@
+version: "3"
+services:
+  db:
+    image: postgres:10.4
+    ports:
+      - "5432:5432"
+  django:
+    hostname: django
+    env_file:
+      - docker/docker.env
+    build:
+      context: .
+      dockerfile: docker/django_Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/code
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+  celery:
+    build: 
+      context: .
+      dockerfile: docker/celery_Dockerfile
+    env_file:
+      - docker/docker.env
+    command: celery -A youtube worker -l INFO
+    depends_on:
+      - django
+      - redis
+    volumes:
+      - .:/code
+  celery-beat:
+    build: 
+      context: .
+      dockerfile: docker/celery_Dockerfile
+    env_file:
+      - docker/docker.env
+    command: celery -A youtube beat -l INFO
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - redis
