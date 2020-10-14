@@ -55,3 +55,11 @@ json.loads(r.content)
 - Search Results section:
   - All the search results stored will be available here, and can search for them or sort by various attributes including Title, Description, Publish time & Date, Thumbnail URL & VideoID
   - Can also delete any of the results
+  
+### Stored videos dashboard
+
+![Search Results](https://user-images.githubusercontent.com/31621523/95977728-d5079980-0e36-11eb-84dc-65976d6875fd.png)
+
+### API Keys dashboard (with fake example)
+
+![API Keys](https://user-images.githubusercontent.com/31621523/95978078-5101e180-0e37-11eb-88ef-4ef4d61293bd.png)
