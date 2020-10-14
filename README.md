@@ -14,7 +14,7 @@
 - Pull the github repo, and change the `SEARCH TERM` in `docker/docker.env` file if you want (Default is "Space")
 - From the base dir of the code having the `docker-compose` file, launch it for the first time using `docker-compose --build` 
 - Go to `<ip>:<port>/admin` (`http://localhost:8000/admin` if in local machine) and login using `admin` & `password` as credentials after setup
-- Add a valid Developer API key through the dashboard
+- Add a valid Youtube API v3 Developer API key through the dashboard
 - For the first time, the app will load all matching results for the past 6 hours
 - From next asynchronous run of the celery workers, all videos uploaded after the latest stored video will be loaded
 - You can check the schema of the db if you go to the url: `<ip>:<port>/dbschema`
@@ -55,3 +55,11 @@ json.loads(r.content)
 - Search Results section:
   - All the search results stored will be available here, and can search for them or sort by various attributes including Title, Description, Publish time & Date, Thumbnail URL & VideoID
   - Can also delete any of the results
+  
+### Stored videos dashboard
+
+![Search Results](https://user-images.githubusercontent.com/31621523/95977728-d5079980-0e36-11eb-84dc-65976d6875fd.png)
+
+### API Keys dashboard (with fake example)
+
+![API Keys](https://user-images.githubusercontent.com/31621523/95978078-5101e180-0e37-11eb-88ef-4ef4d61293bd.png)
