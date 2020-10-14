@@ -57,7 +57,7 @@ def fetch_search_results():
 			d += "+00:00"
 
 	# Response is paginated with a max of 5 per page. nexToken is a rough indicator 
-	# that there are still results which can be fetched from more queries
+	# that there are possibly still results which can be fetched from more queries
 	nextToken = None
 
 	while True:
