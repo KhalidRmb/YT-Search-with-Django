@@ -29,7 +29,7 @@ import requests
 import json
 
 url = "http://localhost:8000/api/search/keyword_search/"
-data = {"search_term": "Good"}
+data = {"search_term": "Interesting"}
 r = requests.get(data=data, url=url)
 json.loads(r.content)
 ```
