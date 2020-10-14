@@ -36,12 +36,15 @@ def search_videos(request):
 
 	words = search_term.strip().split()
 	
+	# Ability to partial match the search query with the title & description
 	query = Q()
 	for word in words:
 		query = query & (Q(title__icontains=word) | Q(description__icontains=word))
 	logger.info(query)
 	results = SearchResult.objects.filter(query).order_by("-publish_time")
 	logger.info(results)
+	
+	# Paginating the response
 	paginator, result_page = paginated_queryset(results, request)
 	serializer = SearchResultSerializer(
 		result_page, many=True, context={"request": request}
