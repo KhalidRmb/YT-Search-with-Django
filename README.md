@@ -2,7 +2,7 @@
 
 ## About the App
 - Built using a Django backend and a PostgreSQL database
-- Uses Celery for asynchronously procesing the predefined search query `Space` every `30` seconds (time interval can be changed in the `settings/dev.py` file)
+- Uses Celery for asynchronously processing the predefined search query `Space` every `30` seconds (time interval can be changed in the `settings/dev.py` file)
 - Uses Redis as the messaging queue to send the task message to the Celery workers
 - Fully Dockerized
 - App will automatically search for an available valid (not having esxeeded it's quota) API key, and if not available gives a proper error log
@@ -12,8 +12,8 @@
 
 ## Launching the app
 - Pull the github repo, and change the `SEARCH TERM` in `docker/docker.env` file if you want (Default is "Space")
-- From the root folder having the `docker-compose` file, launch it for the first time using `docker-compose --build` 
-- Go to `<ip>:<port>/admin` (`http://localhost:8000/admin` if in local machine) and login using `admin` & `password` as credentials
+- From the base dir of the code having the `docker-compose` file, launch it for the first time using `docker-compose --build` 
+- Go to `<ip>:<port>/admin` (`http://localhost:8000/admin` if in local machine) and login using `admin` & `password` as credentials after setup
 - Add a valid Developer API key through the dashboard
 - For the first time, the app will load all matching results for the past 6 hours
 - From next asynchronous run of the celery workers, all videos uploaded after the latest stored video will be loaded
