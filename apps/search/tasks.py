@@ -30,9 +30,16 @@ def fetch_search_results():
 		logger.warning("There are no active API keys present!")
 		return
 	else:
-		DEVELOPER_KEY = DEVELOPER_KEY[0] # Take the first active developer key
+		DEVELOPER_KEY = DEVELOPER_KEY[0] # Take the first active developer key object
 
-	youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY.key)
+	try:
+		youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY.key)
+	except Exception as e:
+		if json.loads(e.content)['error']['message'] == "API key not valid. Please pass a valid API key.":
+			logger.warning("API key not valid. Please enter a valid API key.")
+			DEVELOPER_KEY.is_active = False
+			DEVELOPER_KEY.save()
+		return
 
 	# Check if any results have been stores yet to calculate the publishedAfter time for the Youtube API request
 	result = SearchResult.objects.last()
@@ -61,7 +68,7 @@ def fetch_search_results():
 				response = youtube.search().list(q=SEARCH_TERM, part='snippet', publishedAfter=d, order='date', type='video').execute()
 		except Exception as e:
 			logger.exception(e)
-			if json.loads(e.content)['error']['code'] == 403:
+			if json.loads(e.content)['error']['code'] == 403: # Quota exceeded
 				DEVELOPER_KEY.is_active = False
 				DEVELOPER_KEY.save()
 			return

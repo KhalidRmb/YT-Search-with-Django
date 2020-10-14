@@ -104,7 +104,7 @@ DATABASES = {
             "POSTGRES_PASSWORD", "postgres"
         ),
         "HOST": os.environ.get(
-            "POSTGRES_HOST", "host.docker.internal"
+            "POSTGRES_HOST", "db"
         ),
         "PORT": os.environ.get("POSTGRES_PORT", 5432),
     }
@@ -136,7 +136,6 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_RATES": {
         "anon": "100/minute",
         "user": "100/minute",
-        "resend_email": "3/hour",
     },
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
 }
