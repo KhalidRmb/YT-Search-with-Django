@@ -5,10 +5,15 @@
 - Uses Celery for asynchronously processing the predefined search query `Space` every `30` seconds (time interval can be changed in the `settings/dev.py` file)
 - Uses Redis as the messaging queue to send the task message to the Celery workers
 - Fully Dockerized
+- Uses a GIN index on the `title` and `descriptionm` to efficiently match the search term with the search vectors generated on those fields when searching
+  - This will have orders of magnitude better performance than a simple filter operation when the stored data becomes huge
 - App will automatically search for an available valid (not having esxeeded it's quota) API key, and if not available gives a proper error log
 - Can add new API keys through a dashboard & filter
 - Search dashboard with sorting (Partial matching available)
-- Search API (Partial matching available)
+- Optimized Search API
+  - Partial matching
+  - Related words also matched Ex: 'interested' -> 'interesting'
+- Handles Live videos without any glitches, and loads only once
 
 ## Launching the app
 - Pull the github repo, and change the `SEARCH TERM` in `docker/docker.env` file if you want (Default is "Space")
