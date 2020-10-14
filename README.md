@@ -14,7 +14,7 @@
 - Pull the github repo, and change the `SEARCH TERM` in `docker/docker.env` file if you want (Default is "Space")
 - From the base dir of the code having the `docker-compose` file, launch it for the first time using `docker-compose --build` 
 - Go to `<ip>:<port>/admin` (`http://localhost:8000/admin` if in local machine) and login using `admin` & `password` as credentials after setup
-- Add a valid Developer API key through the dashboard
+- Add a valid Youtube API v3 Developer API key through the dashboard
 - For the first time, the app will load all matching results for the past 6 hours
 - From next asynchronous run of the celery workers, all videos uploaded after the latest stored video will be loaded
 - You can check the schema of the db if you go to the url: `<ip>:<port>/dbschema`
